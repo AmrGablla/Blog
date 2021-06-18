@@ -1,3 +1,4 @@
+
 ---
 layout: post
 title:  "Hello Javascript"
@@ -19,21 +20,25 @@ I think this language awesome in manipulating strings it has many built-in funct
 
  - You can access any character in the string like array `i think many languages contain this feature` 
  
-      let string = 'JavaScript'
-	  let firstLetter = string[0] 
-	  console.log(firstLetter)           // J
+`  let string = 'JavaScript'`
+`let firstLetter = string[0] `
+` console.log(firstLetter)           // J`
+ 
+
  - Includes(), Yes this small check function to check the string contain certain string or not.
 
-     let string = '30 Days Of JavaScript' 
-    console.log(string.includes('Days'))     // true 
+    ` let string = '30 Days Of JavaScript' `
+  `  console.log(string.includes('Days'))     // true `
      
 
  - Search:
-Search with javascript is the first thing I found nice you can use some flags to change it like:
-|Modifier| |Description |
-|g| |Perform a global match (find all matches rather than stopping after the first match|
-| I | | Perform case-insensitive matching |
-|m| |Perform multiline matching| 
+Search with javascript is the first thing I found nice you can use some flags to change it like: 
 
+| Modifier | Description |
+| ------ | ------ |
+| g | Perform a global match (find all matches rather than stopping after the first match |
+| i | Perform case-insensitive matching |
+| m | Perform multiline matching |  
+ 
 
 it is baesd on ## RegExp Object 
