@@ -4,7 +4,7 @@ title:  "Hello Javascript"
 date:   2021-06-18 21:30:55 +0200
 categories: jekyll update
 ---
-
+TODO: change the title to make it like chane of articeles, foucs in Regx
 
 # Please be kind to me!
 It is my first time to gave Javascript a good try to learn it, Not just copy-paste code snippets and google the issues.
