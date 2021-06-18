@@ -1,11 +1,9 @@
-
 ---
 layout: post
 title:  "Hello Javascript"
 date:   2021-05-05 21:30:55 +0200
 categories: jekyll update
---- 
- 
+---
 # Please be kind to me!
 It is my first time to gave Javascript a good try to learn it, Not just copy-paste code snippets and google the issues.
 
