@@ -6,7 +6,7 @@ date:   2022-06-15 21:30:55 +0200
 Enhance the javascript performance I think is the key point to work and support the language eco case the fact of it is single thread langue but, it is potent for the web.
 
 I faced a situation to make a very heavy compute on the browser, so I made it on a spirited [web worker][web-worker].
-But passing the data between the main process and the web worker thread was the deal case I need to pass more than 100 MB array of data,
+But passing the data between the main process and the web worker thread was the issue to pass more than 100 MB array of data,
 And access it from there. 
 
 The wrong usage I did was:
