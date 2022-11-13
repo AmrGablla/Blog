@@ -1,0 +1,30 @@
+---
+layout: post
+title:  "NPM link command"
+date:   2022-11-14 00:60:55 +0200
+categories: NPM
+---
+ 
+## How to debug other packges or check edits
+
+After a year of working with open-source repositories, I face a lot of times a situation in which I need to make a quick edit in the library and check the result before going through the PRs cycle. Hence, I found this excellent and dangerous command:
+
+``` js
+  npm link 
+```
+
+### What
+
+### When
+
+- You might be the author of a dependency and don’t have good test coverage yet
+- Check issue or bug in dependency
+
+### How
+
+- create symbolic link
+- use the symbolic link
+
+### what is the differnece between npm link and npx link
+
+1- npx is cli tool to install and manage dependencies or to execute it
