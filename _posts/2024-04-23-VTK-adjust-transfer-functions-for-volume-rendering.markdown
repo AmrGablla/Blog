@@ -120,12 +120,12 @@ This can be very noticed with preset like CT-Soft-Tissue and here a three screen
 
 With 100%
 
-![100]({{'/assets/images/vtk-opacity-0.png' | relative_url}})
+![100]({{'/assets/images/vtk-opacity-100.png' | relative_url}})
 
 
 with 50%
 
-![50]({{'/assets/images/vtk-opacity-0.png' | relative_url}})
+![50]({{'/assets/images/vtk-opacity-50.png' | relative_url}})
 
 with 0%
 
