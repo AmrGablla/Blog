@@ -4,8 +4,6 @@ title: About
 permalink: /about/
 ---
 
- # About Me
-
 Senior software engineer based in Alexandria, Egypt, with a passion for open-source contribution, particularly in the Cornerstone3D library. Expertise in ASP.NET, ASP.NET Core, Java, and JavaScript frameworks like Angular and Vue.js. Proficient in AWS for building scalable and secure applications.
 
 ## Experience
@@ -35,4 +33,4 @@ Senior software engineer based in Alexandria, Egypt, with a passion for open-sou
 
 ASP.NET • .NET Core • Java • Angular • Vue.js • AWS
 
-Connect with me on [LinkedIn](linkedin.com/in/amrgablla) or email at amrjablla@gmail.com.
+Connect with me on [LinkedIn](https://www.linkedin.com/in/amrgablla) or email at amrjablla@gmail.com.
