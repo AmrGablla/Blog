@@ -18,10 +18,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Amr GabAllah Blog
+title: Amr Gab Allah Blog
 email: amrjablla@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  I'm Software Engineer, Passianed with meaning of my life and do good things.
+  I'm a Software Engineer driven by a passion for meaningful work.
   
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
