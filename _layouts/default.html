@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <!-- Include your GoatCounter script here -->
+  <script data-goatcounter="https://amrjablla.goatcounter.com/count"
+  async src="//gc.zgo.at/count.js"></script>
+  <!-- End GoatCounter script -->
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {% seo %}
+</head>
+<body>
+  <header>
+    <h1>{{ site.title | default: "Amr Gab Allah Blog" }}</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <!-- Add other navigation links if needed -->
+      </ul>
+    </nav>
+  </header>
+  <main>{{ content }}</main>
+  <footer>
+    <!-- Add footer content if needed -->
+  </footer>
+</body>
+</html>
