@@ -3,53 +3,47 @@ layout: post
 title:  "VTK adjust transfer functions for volume rendering"
 date:   2024-04-23 14:30:55 +0200 
 ---
-# VTK adjust transfer functions for volume rendering
+# VTK Adjust Transfer Functions for Volume Rendering
 
+When it comes to rendering medical images in 3D volume using either the Cornerstone library or the VTK library directly, mastering the widely-used WW/WL tool becomes essential. This tool equips radiologists with the precision to adjust visualization focus within a specific window, thereby enhancing diagnostic capabilities.
 
-In the context of utilizing the Cornerstone library for rendering medical images in 3D volume or leveraging the VTK library directly, one inevitably encounters the challenge of implementing the widely-used WW/WL tool. This tool enables radiologists to adjust the volume to focus within a specific window.
+Rendering volumes in VTK involves manipulating various properties, offering users the necessary control for nuanced visualization. These properties include:
 
-Render volume in VTK have many properties and manipulating this properties change the rendered volume in the way that give the user the control that need.
+- **Color Transfer Function**
+- **Scalar Opacity**
+- **Gradient Opacity**
+- **Interpolation**
+- **Shade**
+- **Ambient**
+- **Diffuse**
+- **Specular**
+- **Specular Power**
 
+While each property contributes to the rendering outcome, for the purpose of this discussion, the focus will be primarily on the trifecta essential for volume adjustment: color transfer function, scalar opacity, and gradient opacity.
 
-this properties contains:
+## Understanding Color Transfer Function and Scalar Opacity
 
-- color transfer function
-- scalar opacity
-- gradient opacity
-- interpolation
-- shade
-- ambient
-- diffuse
-- specular
-- specular power
+The color transfer function maps scalar values, typically representing tissue density or other physical properties, to colors for visualization purposes. Simultaneously, scalar opacity controls the transparency of these scalar values.
 
-All this properties effect in the rendering but i'll focus with color transfer, scalar opacity and gradient opacity that what we need for this adjust of the volume.
+Consider the following example values:
 
-## Color transfer function and scalar opacity 
-Color transfer function maps scalar values (typically representing tissue density or some other physical property) to colors for visualization purposes.
-And scalar opacity control the opacity of this scalar values.
+-3024 ➔ 0 0 0  
+-16.4458 ➔ 0.729412 0.254902 0.301961  
+641.385 ➔ 0.905882 0.815686 0.552941  
+3071 ➔ 1 1 1
 
-Example of that this values:
--3024 0 0 0 
--16.4458 0.729412 0.254902 0.301961
-641.385 0.905882 0.815686 0.552941 
-3071 1 1 1
+In this representation, the first sRGB point dictates the color from voxel values -3024 to -16.4458, colored with black (0 0 0), while scalar opacity values dictate visibility:
 
-this four sRGB points control the color from voxels values -3024 to -16.4458 to be colored with 0 0 0 (black color)
+-3024 ➔ 0  
+-16.4458 ➔ 0  
+641.385 ➔ 0.715686  
+3071 ➔ 0.705882
 
-and it is scalar opacity values:
--3024 0 
--16.4458 0 
-641.385 0.715686 
-3071 0.705882
+These values encapsulate a function for a range of points, defining both color and opacity. The first range, -3024 to -16.4458, will be hidden because the opacity is 0.
 
-and will be hidden cause the opacity is 0 totally hidden.
+In Cornerstone, achieving this is facilitated by the `applyPreset` function, as demonstrated below:
 
-So you can the values represent a function for range of points and set it is color and opacity.
-
-In cornerstone that can be done with applyPreset function:
-
-``` js
+```javascript
 const preset = {
 	name: 'CT-Bone',
 	gradientOpacity: '4 0 1 255 1',
@@ -70,9 +64,9 @@ utilities.applyPreset(
 );
 ```
 
-And in VTK you can did it like this:
+Similarly, in VTK, achieving this functionality can be accomplished with the following code:
 
-``` js
+```javascript
 import vtkColorTransferFunction from '@kitware/vtk.js/Rendering/Core/ColorTransferFunction';
 
 // Create a color transfer function
@@ -85,6 +79,39 @@ volumeProperty.setRGBTransferFunction(0, colorTransferFunction);
 
 ```
 
+By manipulating these presets, users can finely adjust rendering parameters to suit their visualization needs. For instance, altering the color and opacity values can significantly impact the visualization outcome, as depicted in the images below:
 
-This preset value show the 
-![first preset]({{'/assets/images/vtk-first-preset.png' | relative_url}})
+![First Preset]({{'/assets/images/vtk-first-preset.png' | relative_url}})
+
+Upon adjusting parameters like point values and opacity, the visualization adapts accordingly, as illustrated below:
+
+![Second Preset]({{'/assets/images/vtk-first-preset2.png' | relative_url}})
+
+Point -16.4458 changed to -160.4458 and its opacity from 0 to 1, allowing soft tissues to appear after reducing the overall gradient opacity.
+
+## Control the Gradient Opacity
+
+Setting the value of the Gradient Opacity, as in this VTK example [VTK Volume Viewer](https://kitware.github.io/vtk-js/examples/VolumeViewer/VolumeViewer.html), enables the appearance or disappearance of different layers from the volume.
+
+## Change Gradient Opacity for Enhanced Control
+
+Controlling gradient opacity dynamically manages the appearance of different layers within the volume. By configuring the gradient opacity values, users can dictate the visibility of various layers, thereby enhancing the interpretability of the rendered volume.
+
+Experimenting with gradient opacity parameters can unveil hidden details or emphasize specific anatomical structures within the volume, empowering users with enhanced diagnostic capabilities.
+
+And this can be done with this function:
+
+```javascript
+const opacity = 1;
+
+const n = this.actor.getMapper().getInputData(),
+    r = (n.getPointData().getScalars() || n.getPointData().getArrays()[0]).getRange();
+const o = Math.max(0, opacity - 0.3) / 0.7;
+
+this.actor.getProperty().setUseGradientOpacity(0, true);
+this.actor.getProperty().setGradientOpacityMinimumValue(0, 2 * (r[1] - r[0]) * o * o);
+this.actor.getProperty().setGradientOpacityMinimumOpacity(0, opacity);
+this.actor.getProperty().setGradientOpacityMaximumValue(0, 1 * (r[1] - r[0]));
+```
+
+Considering the complexity of adjusting transfer functions and opacity in volume rendering, there's a great opportunity to create a user-friendly tool. This tool would allow medical professionals to easily tweak these settings, enhancing their ability to explore and understand volumetric data in real-time. Simplifying this process could lead to more accurate diagnoses and improved patient care.
