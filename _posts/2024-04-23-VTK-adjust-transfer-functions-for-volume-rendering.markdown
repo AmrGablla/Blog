@@ -87,4 +87,4 @@ volumeProperty.setRGBTransferFunction(0, colorTransferFunction);
 
 
 This preset value show the 
-![first preset](/assets/images/vtk-first-preset.png)
+![first preset]({{'/assets/images/vtk-first-preset.png' | relative_url}})
