@@ -1,9 +1,8 @@
 ---
 layout: post
-title:  "VTK adjust transfer functions for volume rendering"
+title:  "VTK Adjust Transfer Functions for Volume Rendering"
 date:   2024-04-23 14:30:55 +0200 
 ---
-# VTK Adjust Transfer Functions for Volume Rendering
 
 When it comes to rendering medical images in 3D volume using either the Cornerstone library or the VTK library directly, mastering the widely-used WW/WL tool becomes essential. This tool equips radiologists with the precision to adjust visualization focus within a specific window, thereby enhancing diagnostic capabilities.
 
@@ -71,7 +70,10 @@ import vtkColorTransferFunction from '@kitware/vtk.js/Rendering/Core/ColorTransf
 
 // Create a color transfer function
 const colorTransferFunction = vtkColorTransferFunction.newInstance();
-colorTransferFunction.addRGBPoint(-3024, 0.0, 0.0, 0.0); colorTransferFunction.addRGBPoint(-16.4458, 0.729412, 0.254902, 0.301961); colorTransferFunction.addRGBPoint(641.385, 0.905882, 0.815686, 0.552941); colorTransferFunction.addRGBPoint(3071, 1.0, 1.0, 1.0);
+colorTransferFunction.addRGBPoint(-3024, 0.0, 0.0, 0.0); 
+colorTransferFunction.addRGBPoint(-16.4458, 0.729412, 0.254902, 0.301961);
+colorTransferFunction.addRGBPoint(641.385, 0.905882, 0.815686, 0.552941);
+colorTransferFunction.addRGBPoint(3071, 1.0, 1.0, 1.0);
 
 // Apply the color transfer function to the volume property
 const volumeProperty = vtk.VolumeProperty.newInstance();
@@ -113,5 +115,21 @@ this.actor.getProperty().setGradientOpacityMinimumValue(0, 2 * (r[1] - r[0]) * o
 this.actor.getProperty().setGradientOpacityMinimumOpacity(0, opacity);
 this.actor.getProperty().setGradientOpacityMaximumValue(0, 1 * (r[1] - r[0]));
 ```
+
+This can be very noticed with preset like CT-Soft-Tissue and here a three screenshots of three different Gradient Opacity values:
+
+With 100%
+
+![100]({{'/assets/images/vtk-opacity-0.png' | relative_url}})
+
+
+with 50%
+
+![50]({{'/assets/images/vtk-opacity-0.png' | relative_url}})
+
+with 0%
+
+![0]({{'/assets/images/vtk-opacity-0.png' | relative_url}})
+
 
 Considering the complexity of adjusting transfer functions and opacity in volume rendering, there's a great opportunity to create a user-friendly tool. This tool would allow medical professionals to easily tweak these settings, enhancing their ability to explore and understand volumetric data in real-time. Simplifying this process could lead to more accurate diagnoses and improved patient care.
